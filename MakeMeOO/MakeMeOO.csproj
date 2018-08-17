@@ -42,8 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
-    <Compile Include="IAccountState.cs" />
+    <Compile Include="1_RemoveBoolean\Account.cs" />
+    <Compile Include="1_RemoveBoolean\IAccountState.cs" />
+    <Compile Include="2_ExtentionForeach\CompositePainter.cs" />
+    <Compile Include="2_ExtentionForeach\CompositePainterFactories.cs" />
+    <Compile Include="2_ExtentionForeach\EnumerableExtensions.cs" />
+    <Compile Include="2_ExtentionForeach\IPainter.cs" />
+    <Compile Include="2_ExtentionForeach\Painters.cs" />
+    <Compile Include="2_ExtentionForeach\ProportionalPainter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
