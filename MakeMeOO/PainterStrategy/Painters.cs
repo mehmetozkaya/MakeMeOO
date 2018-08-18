@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace MakeMeOO._2_ExtentionForeach
+namespace MakeMeOO.PainterStrategy
 {
-    public class Painters
+    internal class Painters
     {
-
         private IEnumerable<IPainter> ContainedPainters { get; }
 
         public Painters(IEnumerable<IPainter> painters)

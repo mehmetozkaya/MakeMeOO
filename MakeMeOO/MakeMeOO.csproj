@@ -42,14 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1_RemoveBoolean\Account.cs" />
-    <Compile Include="1_RemoveBoolean\IAccountState.cs" />
-    <Compile Include="2_ExtentionForeach\CompositePainter.cs" />
-    <Compile Include="2_ExtentionForeach\CompositePainterFactories.cs" />
-    <Compile Include="2_ExtentionForeach\EnumerableExtensions.cs" />
-    <Compile Include="2_ExtentionForeach\IPainter.cs" />
-    <Compile Include="2_ExtentionForeach\Painters.cs" />
-    <Compile Include="2_ExtentionForeach\ProportionalPainter.cs" />
+    <Compile Include="AccountState\Account.cs" />
+    <Compile Include="AccountState\IAccountState.cs" />
+    <Compile Include="PainterStrategy\CombiningPainter.cs" />
+    <Compile Include="PainterStrategy\CompositePainter.cs" />
+    <Compile Include="PainterStrategy\CompositePainterFactories.cs" />
+    <Compile Include="PainterStrategy\EnumerableExtensions.cs" />
+    <Compile Include="PainterStrategy\IPainter.cs" />
+    <Compile Include="PainterStrategy\IPaintingScheduler.cs" />
+    <Compile Include="PainterStrategy\Painters.cs" />
+    <Compile Include="PainterStrategy\PaintingTask.cs" />
+    <Compile Include="PainterStrategy\ProportionalPainter.cs" />
+    <Compile Include="PainterStrategy\ProportionalPaintingScheduler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

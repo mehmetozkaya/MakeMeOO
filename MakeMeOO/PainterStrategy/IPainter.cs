@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MakeMeOO._2_ExtentionForeach
+namespace MakeMeOO.PainterStrategy
 {
     public interface IPainter
     {
