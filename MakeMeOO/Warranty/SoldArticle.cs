@@ -1,4 +1,5 @@
 ﻿using MakeMeOO.Warranty.Common;
+using MakeMeOO.Warranty.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,10 @@ namespace MakeMeOO.Warranty
         private IWarranty NotOperationalWarranty { get; }
         private IWarranty CircuitryWarranty { get; set; }
 
-        private Option<Part> Circuity { get; set; } = Option<Part>.None();
-        private DeviceStatus OperationalStatus { get; set; }
-        private IReadOnlyDictionary<DeviceStatus, Action<Action>> WarrantyMap { get; }
+        private IOption<Part> Circuitry { get; set; } = Option<Part>.None();
+        private IWarrantyRules WarrantyRules { get; }
 
-        public SoldArticle(IWarranty moneyBack, IWarranty express, IWarrantyMapFactory rulesFactory)
+        public SoldArticle(IWarranty moneyBack, IWarranty express, IWarrantyRulesFactory rulesFactory)
         {
             if (moneyBack == null)
                 throw new ArgumentNullException(nameof(moneyBack));
@@ -28,9 +28,8 @@ namespace MakeMeOO.Warranty
             this.NotOperationalWarranty = express;
             this.CircuitryWarranty = VoidWarranty.Instance;
 
-            this.OperationalStatus = DeviceStatus.AllFine();
-            this.WarrantyMap = rulesFactory.Create(
-                this.ClaimMoneyBack, this.ClaimNotOperationalWarranty, this.ClaimCircuitryWarranty);
+            this.WarrantyRules = rulesFactory.Create(
+                this.ClaimMoneyBack, this.ClaimNotOperationalWarranty, this.ClaimCircuitryWarranty);            
         }
 
         private void ClaimMoneyBack(Action action)
@@ -45,7 +44,7 @@ namespace MakeMeOO.Warranty
 
         private void ClaimCircuitryWarranty(Action action)
         {
-            this.Circuity
+            this.Circuitry
                 .WhenSome()
                 .Do(c => this.CircuitryWarranty.Claim(c.DefectDetectedOn, action))
                 .Execute();
@@ -53,41 +52,34 @@ namespace MakeMeOO.Warranty
 
         public void InstallCircuitry(Part circuitry, IWarranty extendedWarranty)
         {
-            this.Circuity = Option<Part>.Some(circuitry);
+            this.Circuitry = Option<Part>.Some(circuitry);
             this.CircuitryWarranty = extendedWarranty;
-            this.OperationalStatus = this.OperationalStatus.CircuitryReplaced();
+            this.WarrantyRules.CircuitryOperational();
         }
 
         public void CircuitryNotOperational(DateTime detectedOn)
         {
-            this.Circuity
-                .WhenSome()
-                .Do(c =>
-                {
-                    c.MarkDefective(detectedOn);
-                    this.OperationalStatus = this.OperationalStatus.CircuitryFailed();
-                })
-                .Execute();
+            this.WarrantyRules.CircuitryFailed();
         }
 
         public void VisibleDamage()
         {
-            this.OperationalStatus = this.OperationalStatus.WithVisibleDamage();
+            this.WarrantyRules.VisiblyDamaged();
         }
 
         public void NotOperational()
         {
-            this.OperationalStatus = this.OperationalStatus.NotOperational();
+            this.WarrantyRules.NotOperational();
         }
 
         public void Repaired()
         {
-            this.OperationalStatus = this.OperationalStatus.Repaired();
+            this.WarrantyRules.Operational();
         }
 
         public void ClaimWarranty(Action onValidClaim)
         {
-            this.WarrantyMap[this.OperationalStatus].Invoke(onValidClaim);
+            this.WarrantyRules.Claim(onValidClaim);
         }
     }
 }

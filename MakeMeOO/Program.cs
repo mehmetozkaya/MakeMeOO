@@ -2,6 +2,7 @@
 using MakeMeOO.Warranty;
 using MakeMeOO.Warranty.Common;
 using MakeMeOO.Warranty.Common.Interfaces;
+using MakeMeOO.Warranty.Rules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,20 +56,41 @@ namespace MakeMeOO
 
             #region Option
 
-            IOption<string> name = Option<string>.Some("something");
+            //IOption<string> name = Option<string>.Some("something");
 
-            name
-                .When(s => s.Length > 3).Do(s => Console.WriteLine($"{s} long"))
-                .WhenSome().Do(s => Console.WriteLine($"{s} short"))
-                .WhenNone().Do(() => Console.WriteLine("missing"))
-                .Execute();
+            //name
+            //    .When(s => s.Length > 3).Do(s => Console.WriteLine($"{s} long"))
+            //    .WhenSome().Do(s => Console.WriteLine($"{s} short"))
+            //    .WhenNone().Do(() => Console.WriteLine("missing"))
+            //    .Execute();
 
-            int length =
-                name
-                    .When(s => s.Length > 3).MapTo(s => s.Length)
-                    .WhenSome().MapTo(s => 3)
-                    .WhenNone().MapTo(() => 0)
-                    .Map();
+            //int length =
+            //    name
+            //        .When(s => s.Length > 3).MapTo(s => s.Length)
+            //        .WhenSome().MapTo(s => 3)
+            //        .WhenNone().MapTo(() => 0)
+            //        .Map();
+
+            //Console.ReadLine();
+
+            #endregion
+
+            #region WarrantyRule
+
+            IWarranty moneyBackGuraantee =
+                new TimeLimitedWarranty(DateTime.Today, TimeSpan.FromDays(7));
+
+            IWarranty expressWarranty =
+                new TimeLimitedWarranty(DateTime.Today, TimeSpan.FromDays(365));
+
+            IWarranty circuitryWarranty =
+                new LifetimeWarranty(DateTime.Today);
+
+            SoldArticle article = new SoldArticle(moneyBackGuraantee, expressWarranty, new ChristmassRules());
+            article.InstallCircuitry(new Part(DateTime.Now), circuitryWarranty);
+
+            article = new SoldArticle(moneyBackGuraantee, expressWarranty, new DefaultRules());
+            article.InstallCircuitry(new Part(DateTime.Now), circuitryWarranty);
 
             Console.ReadLine();
 
