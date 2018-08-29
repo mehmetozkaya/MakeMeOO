@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AccountState\Account.cs" />
     <Compile Include="AccountState\IAccountState.cs" />
+    <Compile Include="AccountState\MoneyAmount.cs" />
     <Compile Include="PainterStrategy\CombiningPainter.cs" />
     <Compile Include="PainterStrategy\CompositePainter.cs" />
     <Compile Include="PainterStrategy\CompositePainterFactories.cs" />
@@ -56,6 +57,14 @@
     <Compile Include="PainterStrategy\ProportionalPaintingScheduler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Warranty\Common\EnumerableExtensions.cs" />
+    <Compile Include="Warranty\Common\Option.cs" />
+    <Compile Include="Warranty\IWarranty.cs" />
+    <Compile Include="Warranty\LifetimeWarranty.cs" />
+    <Compile Include="Warranty\Part.cs" />
+    <Compile Include="Warranty\SoldArticle.cs" />
+    <Compile Include="Warranty\TimeLimitedWarranty.cs" />
+    <Compile Include="Warranty\VoidWarranty.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
