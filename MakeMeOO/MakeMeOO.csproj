@@ -61,7 +61,9 @@
     <Compile Include="Warranty\Common\Implementation\ActionOnNoneNotResolved.cs" />
     <Compile Include="Warranty\Common\Interfaces\IOption.cs" />
     <Compile Include="Warranty\Common\Option.cs" />
+    <Compile Include="Warranty\DeviceStatus.cs" />
     <Compile Include="Warranty\IWarranty.cs" />
+    <Compile Include="Warranty\IWarrantyMapFactory.cs" />
     <Compile Include="Warranty\LifetimeWarranty.cs" />
     <Compile Include="Warranty\Part.cs" />
     <Compile Include="Warranty\SoldArticle.cs" />

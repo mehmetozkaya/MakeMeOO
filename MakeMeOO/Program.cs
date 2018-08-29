@@ -79,11 +79,11 @@ namespace MakeMeOO
         {
             DateTime now = DateTime.Now;
 
-            article.MoneyBackGuarantee
-                .Claim(now, () => Console.WriteLine("Offer money back."));
+            //article.MoneyBackGuarantee
+            //    .Claim(now, () => Console.WriteLine("Offer money back."));
 
-            article.ExpressWarranty
-                .Claim(now, () => Console.WriteLine("Offer repair."));
+            //article.ExpressWarranty
+            //    .Claim(now, () => Console.WriteLine("Offer repair."));
         }
 
     }
