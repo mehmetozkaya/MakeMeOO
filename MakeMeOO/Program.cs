@@ -1,5 +1,7 @@
 ﻿using MakeMeOO.PainterStrategy;
 using MakeMeOO.Warranty;
+using MakeMeOO.Warranty.Common;
+using MakeMeOO.Warranty.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,18 +40,38 @@ namespace MakeMeOO
             #endregion
 
             #region Warranty
+            //DateTime sellingDate = new DateTime(2018, 6, 9);
+            //TimeSpan moneyBackSpan = TimeSpan.FromDays(30);
+            //TimeSpan warrantySpan = TimeSpan.FromDays(365);
 
-            DateTime sellingDate = new DateTime(2018, 6, 9);
-            TimeSpan moneyBackSpan = TimeSpan.FromDays(30);
-            TimeSpan warrantySpan = TimeSpan.FromDays(365);
+            //IWarranty moneyBack = new TimeLimitedWarranty(sellingDate, moneyBackSpan);
+            //IWarranty warranty = new LifetimeWarranty(sellingDate);
 
-            IWarranty moneyBack = new TimeLimitedWarranty(sellingDate, moneyBackSpan);
-            IWarranty warranty = new LifetimeWarranty(sellingDate);
+            //SoldArticle goods = new SoldArticle(moneyBack, warranty);
+            //ClaimWarranty(goods);
 
-            SoldArticle goods = new SoldArticle(moneyBack, warranty);
-            ClaimWarranty(goods);
+            //Console.ReadLine();
+            #endregion
+
+            #region Option
+
+            IOption<string> name = Option<string>.Some("something");
+
+            name
+                .When(s => s.Length > 3).Do(s => Console.WriteLine($"{s} long"))
+                .WhenSome().Do(s => Console.WriteLine($"{s} short"))
+                .WhenNone().Do(() => Console.WriteLine("missing"))
+                .Execute();
+
+            int length =
+                name
+                    .When(s => s.Length > 3).MapTo(s => s.Length)
+                    .WhenSome().MapTo(s => 3)
+                    .WhenNone().MapTo(() => 0)
+                    .Map();
 
             Console.ReadLine();
+
             #endregion
         }
 

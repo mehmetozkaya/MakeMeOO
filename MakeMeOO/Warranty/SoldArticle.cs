@@ -43,7 +43,7 @@ namespace MakeMeOO.Warranty
 
         public void CircuityNotOperational(DateTime detectedOn)
         {
-            this.Circuity.Do(circuity =>
+            this.Circuity.WhenSome().Do(circuity =>
             {
                 circuity.MarkDefective(detectedOn);
                 this.CircuitryWarranty = this.FailedCircuitryWarranty;
@@ -58,7 +58,7 @@ namespace MakeMeOO.Warranty
 
         public void ClaimCircuitryWarranty(Action onValidClaim)
         {
-            this.Circuity.Do(circuitry =>
+            this.Circuity.WhenSome().Do(circuitry =>
                 this.CircuitryWarranty.Claim(circuitry.DefectDetectedOn, onValidClaim));
         }
     }

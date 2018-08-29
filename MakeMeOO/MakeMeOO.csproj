@@ -58,6 +58,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Warranty\Common\EnumerableExtensions.cs" />
+    <Compile Include="Warranty\Common\Implementation\ActionOnNoneNotResolved.cs" />
+    <Compile Include="Warranty\Common\Interfaces\IOption.cs" />
     <Compile Include="Warranty\Common\Option.cs" />
     <Compile Include="Warranty\IWarranty.cs" />
     <Compile Include="Warranty\LifetimeWarranty.cs" />
