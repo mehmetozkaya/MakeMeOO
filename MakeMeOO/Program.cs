@@ -95,6 +95,15 @@ namespace MakeMeOO
             Console.ReadLine();
 
             #endregion
+
+            #region DocumentNumber
+
+            int controlDigit = ControlDigitAlgorithms.ForSalesDepartment.GetControlDigit(12345);
+            int controlDigitAccount = ControlDigitAlgorithms.ForAccountingDepartment.GetControlDigit(12345);
+
+            Console.ReadLine();
+
+            #endregion
         }
 
         private static void ClaimWarranty(SoldArticle article)

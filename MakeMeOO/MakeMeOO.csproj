@@ -45,6 +45,9 @@
     <Compile Include="AccountState\Account.cs" />
     <Compile Include="AccountState\IAccountState.cs" />
     <Compile Include="AccountState\MoneyAmount.cs" />
+    <Compile Include="DocumentNumber\ControlDigitAlgorithm.cs" />
+    <Compile Include="DocumentNumber\ControlDigitAlgorithms.cs" />
+    <Compile Include="DocumentNumber\Int64Extensions.cs" />
     <Compile Include="PainterStrategy\CombiningPainter.cs" />
     <Compile Include="PainterStrategy\CompositePainter.cs" />
     <Compile Include="PainterStrategy\CompositePainterFactories.cs" />
