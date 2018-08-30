@@ -89,8 +89,8 @@ namespace MakeMeOO
             SoldArticle article = new SoldArticle(moneyBackGuraantee, expressWarranty, new ChristmassRules());
             article.InstallCircuitry(new Part(DateTime.Now), circuitryWarranty);
 
-            //article = new SoldArticle(moneyBackGuraantee, expressWarranty, new DefaultRules());
-            //article.InstallCircuitry(new Part(DateTime.Now), circuitryWarranty);
+            article = new SoldArticle(moneyBackGuraantee, expressWarranty, new DefaultRules());
+            article.InstallCircuitry(new Part(DateTime.Now), circuitryWarranty);
 
             Console.ReadLine();
 
